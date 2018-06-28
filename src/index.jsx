@@ -82,7 +82,7 @@ export default class ImagesUploader extends Component {
 	}
 
 	static defaultProps = {
-		dataName: 'imageFiles',
+		dataName: 'files',
 		headers:{},
 		classNames: {},
 		styles: {},
@@ -327,7 +327,6 @@ export default class ImagesUploader extends Component {
 
 				let response = await fetch(url, {
 					method: 'POST',
-					credentials: 'include',
 					body: imageFormData,
 					headers: this.props.headers
 				});
@@ -684,12 +683,13 @@ export default class ImagesUploader extends Component {
 
 		return (
 			<div className={containerClassNames} style={styles.container || {}}>
-				<label
-					className={classNames.label || `${classNamespace}label`}
-					style={labelStyle}
-					htmlFor={inputId || 'filesInput'}>
-					{label || null}
-				</label>
+				{	label && <label
+						className={classNames.label || `${classNamespace}label`}
+						style={labelStyle}
+						htmlFor={inputId || 'filesInput'}>
+						{label}
+					</label>
+				}
 				<div
 					className={classNames.filesInputContainer || `${classNamespace}filesInputContainer`}
 					style={styles.filesInputContainer}>
